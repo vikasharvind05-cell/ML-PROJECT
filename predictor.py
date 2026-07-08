@@ -1,21 +1,16 @@
 import joblib
 import pandas as pd
-from pyexpat import model
-
-from train import pipeline
 
 pipeline=joblib.load("model/pipeline.pkl")
 
-
 def predict(data: dict):
-    df= pd.DataFrame([data])
-    prediction = pipeline.predict(df)[0])
-    probability = pipeline.predict_proba(df)[0].tolist()
+    df=pd.DataFrame([data])
+    prediction=pipeline.predict(df)[0]
+    probability=pipeline.predict_proba(df)[0].tolist()
     return{
-      "prediction":int(prediction),
-        "probability": {
-            "No Survival": probability[0],
-            "Survival": probability[1]
+        "prediction":int(prediction),
+        "probability":{
+            "No Survival":probability[0],
+            "Survival":probability[1]
         }
     }
-
